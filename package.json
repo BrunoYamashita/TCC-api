@@ -1,0 +1,39 @@
+{
+  "name": "tg-api",
+  "version": "1.0.0",
+  "description": "Graduation work",
+  "main": "serve.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "TG",
+    "TCC",
+    "NodeJS",
+    "ES6",
+    "ES7",
+    "Docker",
+    "API",
+    "MongoDB"
+  ],
+  "author": "Bruno Yamashita",
+  "license": "ISC",
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015-node5": "^1.2.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "glob": "^7.1.2",
+    "jsonwebtoken": "^8.2.1",
+    "koa": "^2.4.1",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.2.1",
+    "koa2-cors": "^2.0.4",
+    "mongoose": "^5.0.15"
+  },
+  "devDependencies": {
+    "jsdoc": "^3.5.5"
+  }
+}
