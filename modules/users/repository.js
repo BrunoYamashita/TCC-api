@@ -41,12 +41,10 @@ export async function createUser(user) {
   }
 };
 
-export async function updateUser(user) {
+export async function updateUser(user,id) {
   try {
 
-    user = new User(user);
-
-    return await User.save()
+    return await User.findByIdAndUpdate(id,user);
 
   } catch (err) {
     err.type = 'database';

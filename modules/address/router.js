@@ -1,6 +1,6 @@
 import { ensureUser } from '../../middleware/validators'
-import * as users from './service'
-export const baseUrl = '/users'
+import * as address from './service'
+export const baseUrl = '/address'
 
 /**
  * Exports 
@@ -13,8 +13,21 @@ export default [
     method: 'POST',
     route: '/',
     handlers: [
-      // ensureUser,
-      users.createUser
+        ensureUser,
+    ]
+  },
+  {
+    method: 'GET',
+    route: '/',
+    handlers: [
+        ensureUser,
+    ]
+  },
+  {
+    method: 'GET',
+    route: '/verify',
+    handlers: [
+      ensureUser,
     ]
   },
   {
@@ -22,23 +35,14 @@ export default [
     route: '/:id',
     handlers: [
       ensureUser,
-      users.getUser
-    ]
-  },
-  {
-    method: 'GET',
-    route: '/',
-    handlers: [
-        // ensureUser,
-        users.findUsers,
     ]
   },
   {
     method: 'PUT',
     route: '/:id',
     handlers: [
-      // ensureUser,
-      users.updateUser,
+      ensureUser,
+      address.updateAddress
     ]
   },
   {
@@ -46,7 +50,6 @@ export default [
     route: '/:id',
     handlers: [
       ensureUser,
-      // users.deleteUser
     ]
   }
 ]

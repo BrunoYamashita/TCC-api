@@ -76,15 +76,16 @@ export async function getUserByUsername(ctx) {
 
 }
 
-export async function updateUser(ctx) {
+export async function updateUser(ctx, next) {
 
-  let user = await userRepository.updateUser(ctx.request.body.user);
+  let user = await userRepository.updateUser(ctx.request.body.user,ctx.params.id);
 
   ctx.body = {
     message: 'Sucessfuly updated',
     user: User
   }
-
+  if(next)
+    return next();
 }
 
 export async function deleteUser(ctx) {
