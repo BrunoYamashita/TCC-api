@@ -25,10 +25,11 @@ User.pre('save', function preSave (next) {
   if (!user.isModified('password')) {
     return next()
   }
-  const hashedPassword = saltHashPassword(user.password)
-  user.password = hashedPassword.password;
-  user.salt = hashedPassword.salt;
-  next();
+  saltHashPassword(user.password).then(hashedPassword =>{
+    user.password = hashedPassword.password;
+    user.salt = hashedPassword.salt;
+    next();
+   })
 })
 
 User.methods.generateToken = function generateToken () {

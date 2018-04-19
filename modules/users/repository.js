@@ -16,6 +16,21 @@ export async function getUser(params) {
   }
 }
 
+export async function getUserByEmail(param) {
+  try {
+    return await User.findOne({'username': {
+      '$regex': param,
+      '$options': 'i'
+    }
+  })
+
+  } catch (err) {
+    err.type = 'database'
+    throw err;
+
+  }
+}
+
 export async function createUser(user) {
   try {
     user = new User(user);

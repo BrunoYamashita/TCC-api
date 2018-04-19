@@ -1,6 +1,6 @@
 import * as userRepository from '../users/repository';
 import * as clientRepository from '../clients/repository';
-import { saltHashPassword, comapre } from '../../services/crypto';
+import { saltHashPassword, compare } from '../../services/crypto';
 import * as jwt from 'jsonwebtoken';
 import config from '../../config'
 
@@ -11,8 +11,8 @@ import config from '../../config'
  * @returns Acesss Token and confirmation
  */
 export async function authUser (ctx, next) {
-  const user = await userRepository.getUser(`usuario_login='${ctx.request.body.usuario_login}'`);
-    if(!await compare(ctx.request.body.usuario_senha, user))
+  const user = await userRepository.getUserByEmail(ctx.request.body.username);
+    if(!await compare(ctx.request.body.password, user))
       ctx.throw(401,'User not authorized');
     let token = jwt.sign({ id: user.usuario_id }, config.secret, {
       expiresIn: 86400 // expires in 24 hours
@@ -21,13 +21,13 @@ export async function authUser (ctx, next) {
     ctx.body = { auth: true, token: token };
 }
 
-export async function authClient (ctx, next) {
-  const user = await userRepository.getUser(`usuario_login='${ctx.request.body.usuario_login}'`);
-  if(!await compare(ctx.request.body.usuario_senha, user))
-    ctx.throw(401,'User not authorized');
-  let token = jwt.sign({ id: user.usuario_id }, config.secret, {
-    expiresIn: 86400 // expires in 24 hours
-  });
-  ctx.status = 200;
-  ctx.body = { auth: true, token: token };
-}
+// export async function authClient (ctx, next) {
+//   const user = await userRepository.getUser(`usuario_login='${ctx.request.body.usuario_login}'`);
+//   if(!await compare(ctx.request.body.usuario_senha, user))
+//     ctx.throw(401,'User not authorized');
+//   let token = jwt.sign({ id: user.usuario_id }, config.secret, {
+//     expiresIn: 86400 // expires in 24 hours
+//   });
+//   ctx.status = 200;
+//   ctx.body = { auth: true, token: token };
+// }

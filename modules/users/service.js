@@ -67,6 +67,15 @@ export async function getUser(ctx) {
 
 }
 
+export async function getUserByUsername(ctx) {
+  let user = await userRepository.getUserByUsername(ctx.request.query.username);
+  ctx.body = {
+    message: 'Sucessfuly found',
+    user: user
+  }
+
+}
+
 export async function updateUser(ctx) {
 
   let user = await userRepository.updateUser(ctx.request.body.user);

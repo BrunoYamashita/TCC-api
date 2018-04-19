@@ -54,8 +54,8 @@ export async function saltHashPassword(userpassword) {
 
 export async function compare(password , user){
     try {
-        let encrypt = sha512(password,user.usuario_chave);
-        return user.usuario_senha == encrypt.passwordHash;
+        let encrypt = sha512(password,user.salt);
+        return user.password == encrypt.passwordHash;
     } catch (error) {
         error.type = 'encrypt';
         error.message = 'Encryption not sucessfull';
