@@ -34,6 +34,7 @@
     "mongoose": "^5.0.15"
   },
   "devDependencies": {
-    "jsdoc": "^3.5.5"
+    "jsdoc": "^3.5.5",
+    "nodemon": "^1.17.3"
   }
 }

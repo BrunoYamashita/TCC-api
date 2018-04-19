@@ -1,5 +1,5 @@
 import User from '../models/users'
-import config from '../../config'
+import config from '../config'
 import * as jwt from 'jsonwebtoken'
 import * as crypto from 'crypto'
 

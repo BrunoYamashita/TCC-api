@@ -12,7 +12,7 @@ const User = new mongoose.Schema({
   name: { type: String, required: true },
   username: { type: String, required: true, unique: true },
   password: { type: String, required: false },
-  salt: { type: String, required: true },
+  salt: { type: String, required: false },
   created: { type: Date, required: true, default: Date.now },
   changed: { type: Date, required: false, default: Date.now },  
   active : { type: Boolean, default: true }
@@ -25,7 +25,7 @@ User.pre('save', function preSave (next) {
   if (!user.isModified('password')) {
     return next()
   }
-  const hashedPassword = await saltHashPassword(user.password)
+  const hashedPassword = saltHashPassword(user.password)
   user.password = hashedPassword.password;
   user.salt = hashedPassword.salt;
   next();

@@ -9,7 +9,9 @@ import { User } from '../../models/users'
  * 
  */
 export async function createUser(ctx) {
-  let user = await userRepository.findUsers(ctx.request.body.user);
+  console.log(ctx.request.body);
+  
+  let user = await userRepository.createUser(ctx.request.body.user);
 
   ctx.body = {
     message: 'Sucessfuly found',

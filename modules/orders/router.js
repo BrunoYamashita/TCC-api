@@ -1,6 +1,6 @@
 import { ensureUser } from '../../middleware/validators'
-// import * as clients from './service'
-export const baseUrl = '/clients'
+// import * as users from './service'
+export const baseUrl = '/orders'
 
 /**
  * Exports 

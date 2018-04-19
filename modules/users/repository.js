@@ -1,5 +1,4 @@
 import User from '../../models/users';
-pool = pool.default;
 
 /**
  * This function should only be used for GET requests passing the queryString as the parameter.

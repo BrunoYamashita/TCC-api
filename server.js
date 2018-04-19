@@ -6,14 +6,11 @@ import cors from 'koa2-cors';
 import config from './config';
 import mongoose from 'mongoose';
 
-require('babel-core/register')();
-require('babel-polyfill');
-
 const db = mongoose.connect(config.database);
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  console.log(`Connected to ${process.env.NODE_ENV}`); 
-});
+// db.on('error', console.error.bind(console, 'connection error:'));
+// db.once('open', function() {
+//   console.log(`Connected to ${process.env.NODE_ENV}`); 
+// });
 const app = new Koa();
 
 app.use(cors({
