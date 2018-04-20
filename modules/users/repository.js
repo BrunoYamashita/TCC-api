@@ -53,10 +53,10 @@ export async function updateUser(user,id) {
   }
 };
 
-export async function deleteUser(user) {
+export async function deleteUser(id) {
   try {
 
-    await user.remove()
+    await User.deleteOne({'_id':id})
 
   } catch (err) {
 

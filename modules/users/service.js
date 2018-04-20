@@ -9,8 +9,7 @@ import { User } from '../../models/users'
  * 
  */
 export async function createUser(ctx) {
-  console.log(ctx.request.body);
-  
+
   let user = await userRepository.createUser(ctx.request.body.user);
 
   ctx.body = {
@@ -67,6 +66,11 @@ export async function getUser(ctx) {
 
 }
 
+/**
+ * Asyncronous function to find one user by username.
+ * @param { Request } ctx ctx HTTP context, request and response objescts into a single object.
+ * @returns retruns user object.
+ */
 export async function getUserByUsername(ctx) {
   let user = await userRepository.getUserByUsername(ctx.request.query.username);
   ctx.body = {
@@ -76,6 +80,11 @@ export async function getUserByUsername(ctx) {
 
 }
 
+/**
+ * Asyncronous function to update one user by id.
+ * @param { Request } ctx ctx HTTP context, request and response objescts into a single object.
+ * @returns retruns confirmation of success.
+ */
 export async function updateUser(ctx, next) {
 
   let user = await userRepository.updateUser(ctx.request.body.user,ctx.params.id);
@@ -88,11 +97,14 @@ export async function updateUser(ctx, next) {
     return next();
 }
 
+/**
+ * Asyncronous function to delete one user by id.
+ * @param { Request } ctx ctx HTTP context, request and response objescts into a single object.
+ * @returns retruns confirmation of success.
+ */
 export async function deleteUser(ctx) {
 
-  let user = ctx.request.body.user;
-
-  user = userRepository.deleteUser(user);
+  const user = userRepository.deleteUser(ctx.params.id);
 
   ctx.body = {
     message: 'Sucessfuly deleted',

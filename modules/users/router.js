@@ -45,8 +45,8 @@ export default [
     method: 'DELETE',
     route: '/:id',
     handlers: [
-      ensureUser,
-      // users.deleteUser
+      // ensureUser,
+      users.deleteUser
     ]
   }
 ]
