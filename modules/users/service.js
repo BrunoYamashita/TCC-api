@@ -112,4 +112,3 @@ export async function deleteUser(ctx) {
   }
 
 }
-
