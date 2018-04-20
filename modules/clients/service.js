@@ -14,7 +14,7 @@ export async function createClient(ctx) {
   let client = await clientRepository.createClient(ctx.request.body.client);
 
   ctx.body = {
-    message: 'Sucessfuly found',
+    message: 'successfully found',
     client: client
   }
 }
@@ -47,7 +47,7 @@ export async function findClients(ctx) {
   });
 
   ctx.body = {
-    message: 'Sucessfuly found',
+    message: 'successfully found',
     client: client
   }
 }
@@ -61,7 +61,7 @@ export async function findClients(ctx) {
 export async function getClient(ctx) {
   let client = await clientRepository.getClient(ctx.params.id);
   ctx.body = {
-    message: 'Sucessfuly found',
+    message: 'successfully found',
     client: client
   }
 
@@ -70,7 +70,7 @@ export async function getClient(ctx) {
 export async function getClientByClientname(ctx) {
   let client = await clientRepository.getClientByClientname(ctx.request.query.clientname);
   ctx.body = {
-    message: 'Sucessfuly found',
+    message: 'successfully found',
     client: client
   }
 
@@ -81,7 +81,7 @@ export async function updateClient(ctx) {
   let client = await clientRepository.updateClient(ctx.request.body.client);
 
   ctx.body = {
-    message: 'Sucessfuly updated',
+    message: 'successfully updated',
     client: Client
   }
 
@@ -94,7 +94,7 @@ export async function deleteClient(ctx) {
   client = clientRepository.deleteClient(client);
 
   ctx.body = {
-    message: 'Sucessfuly deleted',
+    message: 'successfully deleted',
     client: client
   }
 

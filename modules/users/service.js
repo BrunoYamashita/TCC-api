@@ -13,7 +13,7 @@ export async function createUser(ctx) {
   let user = await userRepository.createUser(ctx.request.body.user);
 
   ctx.body = {
-    message: 'Sucessfuly found',
+    message: 'successfully found',
     user: user
   }
 }
@@ -46,7 +46,7 @@ export async function findUsers(ctx) {
   });
 
   ctx.body = {
-    message: 'Sucessfuly found',
+    message: 'successfully found',
     user: user
   }
 }
@@ -60,7 +60,7 @@ export async function findUsers(ctx) {
 export async function getUser(ctx) {
   let user = await userRepository.getUser(ctx.params.id);
   ctx.body = {
-    message: 'Sucessfuly found',
+    message: 'successfully found',
     user: user
   }
 
@@ -74,7 +74,7 @@ export async function getUser(ctx) {
 export async function getUserByUsername(ctx) {
   let user = await userRepository.getUserByUsername(ctx.request.query.username);
   ctx.body = {
-    message: 'Sucessfuly found',
+    message: 'successfully found',
     user: user
   }
 
@@ -90,7 +90,7 @@ export async function updateUser(ctx, next) {
   let user = await userRepository.updateUser(ctx.request.body.user,ctx.params.id);
 
   ctx.body = {
-    message: 'Sucessfuly updated',
+    message: 'successfully updated',
     user: User
   }
   if(next)
@@ -107,7 +107,7 @@ export async function deleteUser(ctx) {
   const user = userRepository.deleteUser(ctx.params.id);
 
   ctx.body = {
-    message: 'Sucessfuly deleted',
+    message: 'successfully deleted',
     user: user
   }
 

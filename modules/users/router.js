@@ -13,7 +13,7 @@ export default [
     method: 'POST',
     route: '/',
     handlers: [
-      // ensureUser,
+      ensureUser,
       users.createUser
     ]
   },
@@ -29,7 +29,7 @@ export default [
     method: 'GET',
     route: '/',
     handlers: [
-        // ensureUser,
+        ensureUser,
         users.findUsers,
     ]
   },
@@ -37,7 +37,7 @@ export default [
     method: 'PUT',
     route: '/:id',
     handlers: [
-      // ensureUser,
+      ensureUser,
       users.updateUser,
     ]
   },
@@ -45,7 +45,7 @@ export default [
     method: 'DELETE',
     route: '/:id',
     handlers: [
-      // ensureUser,
+      ensureUser,
       users.deleteUser
     ]
   }

@@ -1,4 +1,6 @@
 import User from '../../models/users';
+import EventEmitter from 'events';
+const ee = new EventEmitter();
 
 /**
  * This function should only be used for GET requests passing the queryString as the parameter.
@@ -42,15 +44,8 @@ export async function createUser(user) {
 };
 
 export async function updateUser(user,id) {
-  try {
 
     return await User.findByIdAndUpdate(id,user);
-
-  } catch (err) {
-    err.type = 'database';
-    throw err;
-
-  }
 };
 
 export async function deleteUser(id) {

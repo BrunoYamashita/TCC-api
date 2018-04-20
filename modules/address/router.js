@@ -14,6 +14,7 @@ export default [
     route: '/',
     handlers: [
         ensureUser,
+        address.createAddress
     ]
   },
   {
@@ -21,13 +22,7 @@ export default [
     route: '/',
     handlers: [
         ensureUser,
-    ]
-  },
-  {
-    method: 'GET',
-    route: '/verify',
-    handlers: [
-      ensureUser,
+        address.findAddresses
     ]
   },
   {
@@ -35,6 +30,7 @@ export default [
     route: '/:id',
     handlers: [
       ensureUser,
+      address.findAddress
     ]
   },
   {
@@ -50,6 +46,7 @@ export default [
     route: '/:id',
     handlers: [
       ensureUser,
+      address.deleteAddress
     ]
   }
 ]

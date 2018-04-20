@@ -5,12 +5,12 @@ import bodyParser from 'koa-bodyparser';
 import cors from 'koa2-cors';
 import config from './config';
 import mongoose from 'mongoose';
+import {errorMiddleware} from './middleware/error-handler';
 
-const db = mongoose.connect(config.database);
-// db.on('error', console.error.bind(console, 'connection error:'));
-// db.once('open', function() {
-//   console.log(`Connected to ${process.env.NODE_ENV}`); 
-// });
+mongoose.connect(config.database).catch(err=>{
+    console.log(err);
+    proccess.exit(1)
+})
 const app = new Koa();
 
 app.use(cors({
@@ -22,7 +22,7 @@ app.use(cors({
     allowHeaders: ['Content-Type', 'Authorization', 'Accept']
   }));
 app.use(bodyParser());
-
+app.use(errorMiddleware());
 const modules = require('./modules');
 
 modules(app)

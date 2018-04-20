@@ -1,4 +1,4 @@
-import { ensureUser } from '../../middleware/validators'
+import { ensureClient } from '../../middleware/validators'
 // import * as clients from './service'
 export const baseUrl = '/clients'
 
@@ -13,42 +13,35 @@ export default [
     method: 'POST',
     route: '/',
     handlers: [
-        ensureUser,
+        ensureClient,
     ]
   },
   {
     method: 'GET',
     route: '/',
     handlers: [
-        ensureUser,
-    ]
-  },
-  {
-    method: 'GET',
-    route: '/verify',
-    handlers: [
-      ensureUser,
+        ensureClient,
     ]
   },
   {
     method: 'GET',
     route: '/:id',
     handlers: [
-      ensureUser,
+      ensureClient,
     ]
   },
   {
     method: 'PUT',
     route: '/:id',
     handlers: [
-      ensureUser,
+      ensureClient,
     ]
   },
   {
     method: 'DELETE',
     route: '/:id',
     handlers: [
-      ensureUser,
+      ensureClient,
     ]
   }
 ]

@@ -33,26 +33,26 @@ export async function ensureUser(ctx, next) {
   return next()
 }
 
-// export async function ensureClient(ctx, next) {
-//   const token = ctx.request.header.authorization
-//   if (!token) {
-//     ctx.throw(401)
-//   }
+export async function ensureClient(ctx, next) {
+  const token = ctx.request.header.authorization
+  if (!token) {
+    ctx.throw(401)
+  }
 
-//   let decoded = null
+  let decoded = null
 
-//   try {
+  try {
 
-//     decoded = jwt.verify(token, config.secret)
+    decoded = jwt.verify(token, config.secret)
 
-//   } catch (err) {
-//     ctx.throw(401)
-//   }
+  } catch (err) {
+    ctx.throw(401)
+  }
 
-//   ctx.state.client = await Client.findById(decoded.id,'-password');
-//   if (!ctx.state.client || ctx.state.client.type !== "user") {
-//     ctx.throw(401)
-//   }
+  ctx.state.client = await Client.findById(decoded.id,'-password');
+  if (!ctx.state.client) {
+    ctx.throw(401)
+  }
 
-//   return next()
-// }
+  return next()
+}
