@@ -32,11 +32,4 @@ User.pre('save', function preSave (next) {
    })
 })
 
-User.methods.generateToken = function generateToken () {
-  const user = this;
-  return jwt.sign({ id: user.id }, config.secret,{
-    expiresIn: 86400 // expires in 24 hours
-  })
-}
-
 export default mongoose.model('user', User)

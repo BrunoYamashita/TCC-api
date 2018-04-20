@@ -1,5 +1,5 @@
 import { ensureClient } from '../../middleware/validators'
-// import * as clients from './service'
+import * as clients from './service'
 export const baseUrl = '/clients'
 
 /**

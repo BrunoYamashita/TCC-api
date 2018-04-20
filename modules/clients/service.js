@@ -89,9 +89,7 @@ export async function updateClient(ctx) {
 
 export async function deleteClient(ctx) {
 
-  let client = ctx.request.body.client;
-
-  client = clientRepository.deleteClient(client);
+  client = clientRepository.deleteClient(ctx.params.id);
 
   ctx.body = {
     message: 'successfully deleted',

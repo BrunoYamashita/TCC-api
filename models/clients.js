@@ -38,12 +38,4 @@ Client.pre('save', function preSave (next) {
     })
 })
   
-Client.methods.generateToken = function generateToken () {
-    const client = this;
-    return jwt.sign({ id: client.id }, config.secret,{
-        expiresIn: 86400 // expires in 24 hours
-    })
-}
-  
-
 export default mongoose.model('client', Client)

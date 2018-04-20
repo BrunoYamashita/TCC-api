@@ -1,13 +1,13 @@
 import Client from '../../models/clients';
 
 /**
- * This function should only be used for GET requests passing the queryString as the parameter.
- * @param {string} params  querystring must be in databse format.
+ * Find client by id
+ * @param {string} params database id.
  * @returns { Object } returns an client object for use.
  */
-export async function getClient(params) {
+export async function getClient(id) {
   try {
-    return await Client.findById(params)
+    return await Client.findById(id)
 
   } catch (err) {
     err.type = 'database'
@@ -16,10 +16,15 @@ export async function getClient(params) {
   }
 }
 
-export async function getClientByEmail(param) {
+/**
+ * Find client by username
+ * @param {string} username email of the client
+ * @returns { Object } returns an client object for use.
+ */
+export async function getClientByEmail(username) {
   try {
     return await Client.findOne({'username': {
-      '$regex': param,
+      '$regex': username,
       '$options': 'i'
     }
   })
@@ -31,6 +36,11 @@ export async function getClientByEmail(param) {
   }
 }
 
+/**
+ * Create a client
+ * @param {Object} client data to create a new client
+ * @returns { Object } returns an client object for use.
+ */
 export async function createClient(client) {
   try {
     client = new Client(client);
@@ -41,12 +51,10 @@ export async function createClient(client) {
   }
 };
 
-export async function updateClient(client) {
+export async function updateClient(id,client) {
   try {
 
-    client = new Client(client);
-
-    return await Client.save()
+    return await Client.findByIdAndUpdate(id,client);
 
   } catch (err) {
     err.type = 'database';
@@ -55,13 +63,12 @@ export async function updateClient(client) {
   }
 };
 
-export async function deleteClient(client) {
+export async function deleteClient(id) {
   try {
 
-    await client.remove()
+    return await Client.deleteOne({'_id':id});
 
   } catch (err) {
-
     err.type = 'database';
     throw err;
 
