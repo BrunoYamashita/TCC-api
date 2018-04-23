@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "pm2 index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "windoc": "./node_modules/.bin/jsdoc -c jsdoc-conf.json",
+    "doc": "jsdoc -c jsdoc-conf.json"
   },
   "keywords": [
     "TG",
@@ -16,7 +18,9 @@
     "ES7",
     "Docker",
     "API",
-    "MongoDB"
+    "MongoDB",
+    "Unity Tests",
+    "E2E"
   ],
   "author": "Bruno Yamashita",
   "license": "ISC",

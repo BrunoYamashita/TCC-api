@@ -21,6 +21,12 @@ export async function authUser (ctx, next) {
     ctx.body = { auth: true, token: token };
 }
 
+/**
+ * Function to authenticate clients in the system 
+ * @param { Request } ctx HTTP context, request and response objescts into a single object.
+ * @param { Function } next Executes the next middleware function.
+ * @returns Acesss Token and confirmation
+ */
 export async function authClient (ctx, next) {
   const client = await clientRepository.getClientByEmail(ctx.request.body.username);
   if(!await compare(ctx.request.body.password, user))
