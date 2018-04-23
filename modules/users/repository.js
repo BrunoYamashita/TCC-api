@@ -1,6 +1,4 @@
 import User from '../../models/users';
-import EventEmitter from 'events';
-const ee = new EventEmitter();
 
 /**
  * This function should only be used for GET requests passing the queryString as the parameter.
@@ -18,6 +16,11 @@ export async function getUser(params) {
   }
 }
 
+/**
+ * Find onde user by its email
+ * @param {String} param User email
+ * @returns user object less password field
+ */
 export async function getUserByEmail(param) {
   try {
     return await User.findOne({'username': {
@@ -33,6 +36,11 @@ export async function getUserByEmail(param) {
   }
 }
 
+/**
+ * Create an user
+ * @param {Object} user Object from request
+ * @returns mongoose schema user object
+ */
 export async function createUser(user) {
   try {
     user = new User(user);
@@ -43,11 +51,22 @@ export async function createUser(user) {
   }
 };
 
+/**
+ * Find an user and update it
+ * @param {Object} user fields to udpate as a object
+ * @param {string} id ObjectId of a user
+ * @returns user object
+ */
 export async function updateUser(user,id) {
 
     return await User.findByIdAndUpdate(id,user);
 };
 
+/**
+ * Delete One user by its id
+ * @param {string} id ObjectId from an user
+ * @returns success message
+ */
 export async function deleteUser(id) {
   try {
 
@@ -61,6 +80,12 @@ export async function deleteUser(id) {
   }
 };
 
+/**
+ * Find users   
+ * @param {Object} query fields criteria as object
+ * @param {Object} options skip and limit as object
+ * @returns Users objects
+ */
 export async function findUsers(query,options) {
   if (query.name) {
     query.name = {

@@ -35,7 +35,10 @@
     "pm2": "^2.10.2"
   },
   "devDependencies": {
-    "jsdoc": "^3.5.5",
+    "jest": "^22.4.3",
+    "jsdoc": "~3.5.5",
+    "mocha": "^5.1.1",
+    "nightwatch": "^0.9.20",
     "nodemon": "^1.17.3"
   }
 }

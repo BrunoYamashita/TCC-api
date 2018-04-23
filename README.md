@@ -15,6 +15,7 @@ OBSERVAÇÃO SÓ QUANDO TIVER UM NOVO MIDDLEWARE DEVE-SE USAR NEXT()
 
 Exemplo:    
 
+Aqui next é uma função
       {
     method: 'PUT',
     route: '/:id',
@@ -24,7 +25,7 @@ Exemplo:
     ]
   }
 
-Aqui next é uma função
+Aqui não
 
       {
     method: 'PUT',
@@ -34,6 +35,7 @@ Aqui next é uma função
     ]
   }
 
-Aqui não
 
-jsdoc -c jsdoc-conf.json
+
+jsdoc -c jsdoc-conf.json -> global
+./node_modules/.bin/jsdoc -c jsdoc-conf.json -> local powershell win

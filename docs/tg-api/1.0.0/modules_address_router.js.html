@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: modules/auth/service.js</title>
+    <title>JSDoc: Source: modules/address/router.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: modules/auth/service.js</h1>
+    <h1 class="page-title">Source: modules/address/router.js</h1>
 
     
 
@@ -26,39 +26,58 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import * as userRepository from '../users/repository';
-import * as clientRepository from '../clients/repository';
-import { saltHashPassword, compare } from '../../services/crypto';
-import * as jwt from 'jsonwebtoken';
-import config from '../../config'
+            <pre class="prettyprint source linenums"><code>import { ensureClient } from '../../middleware/validators'
+import * as address from './service'
+export const baseUrl = '/address'
 
 /**
- * Function to authenticate users in the system 
- * @param { Request } ctx HTTP context, request and response objescts into a single object.
- * @param { Function } next Executes the next middleware function.
- * @returns Acesss Token and confirmation
+ * Exports 
+ * 1- Method: HTTP Request type e.g Post
+ * 2- Route: baseUrl + route of acess e.g url/auth/login
+ * 3 Hadlers: Functions to be executed in this route
  */
-export async function authUser (ctx, next) {
-  const user = await userRepository.getUserByEmail(ctx.request.body.username);
-    if(!await compare(ctx.request.body.password, user))
-      ctx.throw(401,'User not authorized');
-    let token = jwt.sign({ id: user.usuario_id }, config.secret, {
-      expiresIn: 86400 // expires in 24 hours
-    });
-    ctx.status = 200;
-    ctx.body = { auth: true, token: token };
-}
-
-export async function authClient (ctx, next) {
-  const client = await clientRepository.getClientByEmail(ctx.request.body.username);
-  if(!await compare(ctx.request.body.password, user))
-    ctx.throw(401,'User not authorized');
-  let token = jwt.sign({ id: client.usuario_id }, config.secret, {
-    expiresIn: 86400 // expires in 24 hours
-  });
-  ctx.status = 200;
-  ctx.body = { auth: true, token: token };
-}
+export default [
+  {
+    method: 'POST',
+    route: '/',
+    handlers: [
+        ensureClient,
+        address.createAddress
+    ]
+  },
+  {
+    method: 'GET',
+    route: '/',
+    handlers: [
+        ensureClient,
+        address.findAddresses
+    ]
+  },
+  {
+    method: 'GET',
+    route: '/:id',
+    handlers: [
+      ensureClient,
+      address.findAddress
+    ]
+  },
+  {
+    method: 'PUT',
+    route: '/:id',
+    handlers: [
+      ensureClient,
+      address.updateAddress
+    ]
+  },
+  {
+    method: 'DELETE',
+    route: '/:id',
+    handlers: [
+      ensureClient,
+      address.deleteAddress
+    ]
+  }
+]
 </code></pre>
         </article>
     </section>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: modules/users/repository.js</title>
+    <title>JSDoc: Source: modules/clients/repository.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: modules/users/repository.js</h1>
+    <h1 class="page-title">Source: modules/clients/repository.js</h1>
 
     
 
@@ -26,18 +26,16 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import User from '../../models/users';
-import EventEmitter from 'events';
-const ee = new EventEmitter();
+            <pre class="prettyprint source linenums"><code>import Client from '../../models/clients';
 
 /**
- * This function should only be used for GET requests passing the queryString as the parameter.
- * @param {string} params  querystring must be in databse format.
- * @returns { Object } returns an user object for use.
+ * Find client by id
+ * @param {string} params database id.
+ * @returns { Object } returns an client object for use.
  */
-export async function getUser(params) {
+export async function getClient(id) {
   try {
-    return await User.findById(params)
+    return await Client.findById(id)
 
   } catch (err) {
     err.type = 'database'
@@ -46,10 +44,15 @@ export async function getUser(params) {
   }
 }
 
-export async function getUserByEmail(param) {
+/**
+ * Find client by username
+ * @param {string} username email of the client
+ * @returns { Object } returns an client object for use.
+ */
+export async function getClientByEmail(username) {
   try {
-    return await User.findOne({'username': {
-      '$regex': param,
+    return await Client.findOne({'username': {
+      '$regex': username,
       '$options': 'i'
     }
   })
@@ -61,35 +64,46 @@ export async function getUserByEmail(param) {
   }
 }
 
-export async function createUser(user) {
+/**
+ * Create a client
+ * @param {Object} client data to create a new client
+ * @returns { Object } returns an client object for use.
+ */
+export async function createClient(client) {
   try {
-    user = new User(user);
-    return await user.save();
+    client = new Client(client);
+    return await client.save();
   } catch (err) {
     err.type = 'database'
     throw err;
   }
 };
 
-export async function updateUser(user,id) {
-
-    return await User.findByIdAndUpdate(id,user);
-};
-
-export async function deleteUser(id) {
+export async function updateClient(id,client) {
   try {
 
-    await User.deleteOne({'_id':id})
+    return await Client.findByIdAndUpdate(id,client);
 
   } catch (err) {
-
     err.type = 'database';
     throw err;
 
   }
 };
 
-export async function findUsers(query,options) {
+export async function deleteClient(id) {
+  try {
+
+    return await Client.deleteOne({'_id':id});
+
+  } catch (err) {
+    err.type = 'database';
+    throw err;
+
+  }
+};
+
+export async function findClients(query,options) {
   if (query.name) {
     query.name = {
       '$regex': query.name,
@@ -112,7 +126,7 @@ export async function findUsers(query,options) {
 
   try {
 
-    return await User.find(query, null, options).sort({
+    return await Client.find(query, null, options).sort({
       'name': 1
     })
 

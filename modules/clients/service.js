@@ -67,6 +67,11 @@ export async function getClient(ctx) {
 
 }
 
+/**
+ * Find clients by its name
+ * @param {Request} ctx HTTP context, request and response objescts into a single object.
+ * @returns retruns client object.
+ */
 export async function getClientByClientname(ctx) {
   let client = await clientRepository.getClientByClientname(ctx.request.query.clientname);
   ctx.body = {
@@ -76,9 +81,14 @@ export async function getClientByClientname(ctx) {
 
 }
 
+/**
+ * Update a client by its Id
+ * @param {*} ctx HTTP context, request and response objescts into a single object.
+ * @returns retruns client object.
+ */
 export async function updateClient(ctx) {
 
-  let client = await clientRepository.updateClient(ctx.request.body.client);
+  let client = await clientRepository.updateClient(ctx.params.id, ctx.request.body.client);
 
   ctx.body = {
     message: 'successfully updated',
@@ -87,6 +97,11 @@ export async function updateClient(ctx) {
 
 }
 
+/**
+ * Delete a client by its id
+ * @param {*} ctx HTTP context, request and response objescts into a single object.
+ * @returns success message
+ */
 export async function deleteClient(ctx) {
 
   client = clientRepository.deleteClient(ctx.params.id);

@@ -51,6 +51,11 @@ export async function createClient(client) {
   }
 };
 
+/**
+ * Find and update a client by its id
+ * @param {String } id ObjectId of a client
+ * @param {Object} client 
+ */
 export async function updateClient(id,client) {
   try {
 
@@ -63,6 +68,10 @@ export async function updateClient(id,client) {
   }
 };
 
+/**
+ * Delete One client by its id
+ * @param {String} id Objectid of client
+ */
 export async function deleteClient(id) {
   try {
 
@@ -75,6 +84,12 @@ export async function deleteClient(id) {
   }
 };
 
+/**
+ * Find clients
+ * @param {Object} query find criterias
+ * @param {Object} options Skip and limit as object
+ * @returns array of clients
+ */
 export async function findClients(query,options) {
   if (query.name) {
     query.name = {
