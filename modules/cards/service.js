@@ -1,4 +1,4 @@
-import * as userRepository from './repository';
+import * as cardRepository from './repository';
 
 /**
  * Asyncronous function to create and user in the aplication.
@@ -7,9 +7,9 @@ import * as userRepository from './repository';
  * @returns retruns a message of sucess and user object.
  * 
  */
-export async function createUser(ctx) {
+export async function createCard(ctx) {
 
-  let user = await userRepository.createUser(ctx.request.body.user);
+  let user = await cardRepository.createCard(ctx.request.body.user);
 
   ctx.body = {
     message: 'successfully found',
@@ -23,7 +23,7 @@ export async function createUser(ctx) {
  * @param { Request } ctx HTTP context, request and response objescts into a single object.
  * @returns retruns user list.
  */
-export async function findUsers(ctx) {
+export async function findCards(ctx) {
   let params = Object.assign({}, ctx.query);
 
   let limit = 0,
@@ -39,7 +39,7 @@ export async function findUsers(ctx) {
     delete params.skip;
   }
 
-  const user = await userRepository.findUsers(params, {
+  const user = await cardRepository.findCards(params, {
     skip,
     limit
   });
@@ -56,22 +56,8 @@ export async function findUsers(ctx) {
  * @param { Request } ctx HTTP context, request and response objescts into a single object.
  * @returns retruns user object.
  */
-export async function getUser(ctx) {
-  let user = await userRepository.getUser(ctx.params.id);
-  ctx.body = {
-    message: 'successfully found',
-    user: user
-  }
-
-}
-
-/**
- * Asyncronous function to find one user by username.
- * @param { Request } ctx ctx HTTP context, request and response objescts into a single object.
- * @returns retruns user object.
- */
-export async function getUserByUsername(ctx) {
-  let user = await userRepository.getUserByUsername(ctx.request.query.username);
+export async function getCard(ctx) {
+  let user = await cardRepository.getCard(ctx.params.id);
   ctx.body = {
     message: 'successfully found',
     user: user
@@ -84,9 +70,9 @@ export async function getUserByUsername(ctx) {
  * @param { Request } ctx ctx HTTP context, request and response objescts into a single object.
  * @returns retruns confirmation of success.
  */
-export async function updateUser(ctx, next) {
+export async function updateCard(ctx, next) {
 
-  let user = await userRepository.updateUser(ctx.request.body.user,ctx.params.id);
+  let user = await cardRepository.updateCard(ctx.request.body.user,ctx.params.id);
 
   ctx.body = {
     message: 'successfully updated',
@@ -101,9 +87,9 @@ export async function updateUser(ctx, next) {
  * @param { Request } ctx ctx HTTP context, request and response objescts into a single object.
  * @returns retruns confirmation of success.
  */
-export async function deleteUser(ctx) {
+export async function deleteCard(ctx) {
 
-  const user = userRepository.deleteUser(ctx.params.id);
+  const user = cardRepository.deleteCard(ctx.params.id);
 
   ctx.body = {
     message: 'successfully deleted',
