@@ -1,5 +1,4 @@
 import * as clientRepository from './repository';
-import { Client } from '../../models/clients'
 
 /**
  * Asyncronous function to create and client in the aplication.
@@ -92,7 +91,7 @@ export async function updateClient(ctx) {
 
   ctx.body = {
     message: 'successfully updated',
-    client: Client
+    client: client
   }
 
 }

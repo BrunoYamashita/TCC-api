@@ -1,5 +1,5 @@
-import { ensureUser } from '../../middleware/validators'
-// import * as users from './service'
+import { ensureClient } from '../../middleware/validators'
+import * as order from './service'
 export const baseUrl = '/orders'
 
 /**
@@ -13,42 +13,40 @@ export default [
     method: 'POST',
     route: '/',
     handlers: [
-        ensureUser,
+        ensureClient,
+        order.createOrder
     ]
   },
   {
     method: 'GET',
     route: '/',
     handlers: [
-        ensureUser,
-    ]
-  },
-  {
-    method: 'GET',
-    route: '/verify',
-    handlers: [
-      ensureUser,
+        ensureClient,
+        order.findOrders
     ]
   },
   {
     method: 'GET',
     route: '/:id',
     handlers: [
-      ensureUser,
+      ensureClient,
+      order.getOrder
     ]
   },
   {
     method: 'PUT',
     route: '/:id',
     handlers: [
-      ensureUser,
+      ensureClient,
+      order.updateOrder
     ]
   },
   {
     method: 'DELETE',
     route: '/:id',
     handlers: [
-      ensureUser,
+      ensureClient,
+      order.deleteOrder
     ]
   }
 ]

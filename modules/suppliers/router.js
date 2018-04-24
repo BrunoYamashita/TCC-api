@@ -1,5 +1,5 @@
 import { ensureUser } from '../../middleware/validators'
-// import * as users from './service'
+import * as supplier from './service'
 export const baseUrl = '/suppliers'
 
 /**
@@ -14,27 +14,21 @@ export default [
     route: '/',
     handlers: [
         ensureUser,
+        supplier.createSupplier
     ]
   },
   {
     method: 'GET',
     route: '/',
     handlers: [
-        ensureUser,
-    ]
-  },
-  {
-    method: 'GET',
-    route: '/verify',
-    handlers: [
-      ensureUser,
+      supplier.findSuppliers
     ]
   },
   {
     method: 'GET',
     route: '/:id',
     handlers: [
-      ensureUser,
+      supplier.getSupplier
     ]
   },
   {
@@ -42,6 +36,7 @@ export default [
     route: '/:id',
     handlers: [
       ensureUser,
+      supplier.updateSupplier
     ]
   },
   {
@@ -49,6 +44,7 @@ export default [
     route: '/:id',
     handlers: [
       ensureUser,
+      supplier.deleteSupplier
     ]
   }
 ]

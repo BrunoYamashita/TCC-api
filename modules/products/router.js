@@ -1,5 +1,5 @@
 import { ensureUser } from '../../middleware/validators'
-// import * as users from './service'
+import * as products from './service'
 export const baseUrl = '/products'
 
 /**
@@ -14,27 +14,21 @@ export default [
     route: '/',
     handlers: [
         ensureUser,
+        products.createProduct
     ]
   },
   {
     method: 'GET',
     route: '/',
     handlers: [
-        ensureUser,
-    ]
-  },
-  {
-    method: 'GET',
-    route: '/verify',
-    handlers: [
-      ensureUser,
+      products.findProducts
     ]
   },
   {
     method: 'GET',
     route: '/:id',
     handlers: [
-      ensureUser,
+      products.getProduct
     ]
   },
   {
@@ -42,6 +36,7 @@ export default [
     route: '/:id',
     handlers: [
       ensureUser,
+      products.updateProduct
     ]
   },
   {
@@ -49,6 +44,7 @@ export default [
     route: '/:id',
     handlers: [
       ensureUser,
+      products.deleteProduct
     ]
   }
 ]
