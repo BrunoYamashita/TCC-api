@@ -14,21 +14,21 @@ export default [
     route: '/',
     handlers: [
         ensureUser,
-        supplier.createSupplier
+        supplier.create
     ]
   },
   {
     method: 'GET',
     route: '/',
     handlers: [
-      supplier.findSuppliers
+      supplier.find
     ]
   },
   {
     method: 'GET',
     route: '/:id',
     handlers: [
-      supplier.getSupplier
+      supplier.findOne
     ]
   },
   {
@@ -36,7 +36,7 @@ export default [
     route: '/:id',
     handlers: [
       ensureUser,
-      supplier.updateSupplier
+      supplier.update
     ]
   },
   {
@@ -44,7 +44,7 @@ export default [
     route: '/:id',
     handlers: [
       ensureUser,
-      supplier.deleteSupplier
+      supplier.deleteOne
     ]
   }
 ]

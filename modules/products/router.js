@@ -14,21 +14,21 @@ export default [
     route: '/',
     handlers: [
         ensureUser,
-        products.createProduct
+        products.create
     ]
   },
   {
     method: 'GET',
     route: '/',
     handlers: [
-      products.findProducts
+      products.find
     ]
   },
   {
     method: 'GET',
     route: '/:id',
     handlers: [
-      products.getProduct
+      products.findOne
     ]
   },
   {
@@ -36,7 +36,7 @@ export default [
     route: '/:id',
     handlers: [
       ensureUser,
-      products.updateProduct
+      products.update
     ]
   },
   {
@@ -44,7 +44,7 @@ export default [
     route: '/:id',
     handlers: [
       ensureUser,
-      products.deleteProduct
+      products.DeleteOne
     ]
   }
 ]

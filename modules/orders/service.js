@@ -7,9 +7,9 @@ import * as orderRepository from './repository';
  * @returns retruns a message of sucess and order object.
  * 
  */
-export async function createOrder(ctx) {
+export async function create(ctx) {
 
-  let order = await orderRepository.createOrder(ctx.request.body.order);
+  let order = await orderRepository.create(ctx.request.body.order);
 
   ctx.body = {
     message: 'successfully found',
@@ -23,7 +23,7 @@ export async function createOrder(ctx) {
  * @param { Request } ctx HTTP context, request and response objescts into a single object.
  * @returns retruns order list.
  */
-export async function findOrders(ctx) {
+export async function find(ctx) {
   let params = Object.assign({}, ctx.query);
 
   let limit = 0,
@@ -39,7 +39,7 @@ export async function findOrders(ctx) {
     delete params.skip;
   }
 
-  const order = await orderRepository.findOrders(params, {
+  const order = await orderRepository.find(params, {
     skip,
     limit
   });
@@ -56,8 +56,8 @@ export async function findOrders(ctx) {
  * @param { Request } ctx HTTP context, request and response objescts into a single object.
  * @returns retruns order object.
  */
-export async function getOrder(ctx) {
-  let order = await orderRepository.getOrder(ctx.params.id);
+export async function findOne(ctx) {
+  let order = await orderRepository.findOne(ctx.params.id);
   ctx.body = {
     message: 'successfully found',
     order: order
@@ -70,9 +70,9 @@ export async function getOrder(ctx) {
  * @param { Request } ctx ctx HTTP context, request and response objescts into a single object.
  * @returns retruns confirmation of success.
  */
-export async function updateOrder(ctx, next) {
+export async function update(ctx, next) {
 
-  let order = await orderRepository.updateOrder(ctx.request.body.order,ctx.params.id);
+  let order = await orderRepository.update(ctx.request.body.order,ctx.params.id);
 
   ctx.body = {
     message: 'successfully updated',
@@ -87,9 +87,9 @@ export async function updateOrder(ctx, next) {
  * @param { Request } ctx ctx HTTP context, request and response objescts into a single object.
  * @returns retruns confirmation of success.
  */
-export async function deleteOrder(ctx) {
+export async function DeleteOne(ctx) {
 
-  const order = orderRepository.deleteOrder(ctx.params.id);
+  const order = orderRepository.DeleteOne(ctx.params.id);
 
   ctx.body = {
     message: 'successfully deleted',

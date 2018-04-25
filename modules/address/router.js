@@ -14,7 +14,7 @@ export default [
     route: '/',
     handlers: [
         ensureClient,
-        address.createAddress
+        address.create
     ]
   },
   {
@@ -22,7 +22,7 @@ export default [
     route: '/',
     handlers: [
         ensureClient,
-        address.findAddresses
+        address.find
     ]
   },
   {
@@ -30,7 +30,7 @@ export default [
     route: '/:id',
     handlers: [
       ensureClient,
-      address.findAddress
+      address.findOne
     ]
   },
   {
@@ -38,7 +38,7 @@ export default [
     route: '/:id',
     handlers: [
       ensureClient,
-      address.updateAddress
+      address.update
     ]
   },
   {
@@ -46,7 +46,7 @@ export default [
     route: '/:id',
     handlers: [
       ensureClient,
-      address.deleteAddress
+      address.deleteOne
     ]
   }
 ]

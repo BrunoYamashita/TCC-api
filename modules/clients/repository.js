@@ -5,7 +5,7 @@ import Client from '../../models/clients';
  * @param {string} params database id.
  * @returns { Object } returns an client object for use.
  */
-export async function getClient(id) {
+export async function findOne(id) {
   try {
     return await Client.findById(id)
 
@@ -21,7 +21,7 @@ export async function getClient(id) {
  * @param {string} username email of the client
  * @returns { Object } returns an client object for use.
  */
-export async function getClientByEmail(username) {
+export async function findByUsername(username) {
   try {
     return await Client.findOne({'username': {
       '$regex': username,
@@ -41,7 +41,7 @@ export async function getClientByEmail(username) {
  * @param {Object} client data to create a new client
  * @returns { Object } returns an client object for use.
  */
-export async function createClient(client) {
+export async function create(client) {
   try {
     client = new Client(client);
     return await client.save();
@@ -56,7 +56,7 @@ export async function createClient(client) {
  * @param {String } id ObjectId of a client
  * @param {Object} client 
  */
-export async function updateClient(id,client) {
+export async function update(id,client) {
   try {
 
     return await Client.findByIdAndUpdate(id,client);
@@ -72,7 +72,7 @@ export async function updateClient(id,client) {
  * Delete One client by its id
  * @param {String} id Objectid of client
  */
-export async function deleteClient(id) {
+export async function deleteOne(id) {
   try {
 
     return await Client.deleteOne({'_id':id});
@@ -90,7 +90,7 @@ export async function deleteClient(id) {
  * @param {Object} options Skip and limit as object
  * @returns array of clients
  */
-export async function findClients(query,options) {
+export async function find(query,options) {
   if (query.name) {
     query.name = {
       '$regex': query.name,

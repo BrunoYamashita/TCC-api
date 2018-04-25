@@ -5,7 +5,8 @@ import bodyParser from 'koa-bodyparser';
 import cors from 'koa2-cors';
 import config from './config';
 import mongoose from 'mongoose';
-import {errorMiddleware} from './middleware/error-handler';
+import { errorMiddleware } from './middleware/error-handler';
+import helmet from 'koa-helmet';
 
 mongoose.connect(config.database).catch(err=>{
     console.log(err);
@@ -23,6 +24,7 @@ app.use(cors({
   }));
 app.use(bodyParser());
 app.use(errorMiddleware());
+app.use(helmet());
 const modules = require('./modules');
 
 modules(app)

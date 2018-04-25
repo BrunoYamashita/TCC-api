@@ -7,10 +7,10 @@ import * as clientRepository from './repository';
  * @returns retruns a message of sucess and client object.
  * 
  */
-export async function createClient(ctx) {
+export async function create(ctx) {
   console.log(ctx.request.body);
   
-  let client = await clientRepository.createClient(ctx.request.body.client);
+  let client = await clientRepository.create(ctx.request.body.client);
 
   ctx.body = {
     message: 'successfully found',
@@ -24,7 +24,7 @@ export async function createClient(ctx) {
  * @param { Request } ctx HTTP context, request and response objescts into a single object.
  * @returns retruns client list.
  */
-export async function findClients(ctx) {
+export async function find(ctx) {
   let params = Object.assign({}, ctx.query);
 
   let limit = 0,
@@ -40,7 +40,7 @@ export async function findClients(ctx) {
     delete params.skip;
   }
 
-  const client = await clientRepository.findClients(params, {
+  const client = await clientRepository.find(params, {
     skip,
     limit
   });
@@ -57,8 +57,8 @@ export async function findClients(ctx) {
  * @param { Request } ctx HTTP context, request and response objescts into a single object.
  * @returns retruns client object.
  */
-export async function getClient(ctx) {
-  let client = await clientRepository.getClient(ctx.params.id);
+export async function findOne(ctx) {
+  let client = await clientRepository.findOne(ctx.params.id);
   ctx.body = {
     message: 'successfully found',
     client: client
@@ -71,8 +71,8 @@ export async function getClient(ctx) {
  * @param {Request} ctx HTTP context, request and response objescts into a single object.
  * @returns retruns client object.
  */
-export async function getClientByClientname(ctx) {
-  let client = await clientRepository.getClientByClientname(ctx.request.query.clientname);
+export async function findByUsername(ctx) {
+  let client = await clientRepository.findByUsername(ctx.request.query.clientname);
   ctx.body = {
     message: 'successfully found',
     client: client
@@ -85,9 +85,9 @@ export async function getClientByClientname(ctx) {
  * @param {*} ctx HTTP context, request and response objescts into a single object.
  * @returns retruns client object.
  */
-export async function updateClient(ctx) {
+export async function update(ctx) {
 
-  let client = await clientRepository.updateClient(ctx.params.id, ctx.request.body.client);
+  let client = await clientRepository.update(ctx.params.id, ctx.request.body.client);
 
   ctx.body = {
     message: 'successfully updated',
@@ -101,9 +101,9 @@ export async function updateClient(ctx) {
  * @param {*} ctx HTTP context, request and response objescts into a single object.
  * @returns success message
  */
-export async function deleteClient(ctx) {
+export async function deleteOne(ctx) {
 
-  client = clientRepository.deleteClient(ctx.params.id);
+  client = clientRepository.deleteOne(ctx.params.id);
 
   ctx.body = {
     message: 'successfully deleted',

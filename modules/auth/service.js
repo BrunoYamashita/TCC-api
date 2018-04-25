@@ -11,7 +11,7 @@ import config from '../../config'
  * @returns Acesss Token and confirmation
  */
 export async function authUser (ctx, next) {
-  const user = await userRepository.getUserByEmail(ctx.request.body.username);
+  const user = await userRepository.findByUsername(ctx.request.body.username);
     if(!await compare(ctx.request.body.password, user))
       ctx.throw(401,'User not authorized');
     let token = jwt.sign({ id: user.usuario_id }, config.secret, {
@@ -28,7 +28,7 @@ export async function authUser (ctx, next) {
  * @returns Acesss Token and confirmation
  */
 export async function authClient (ctx, next) {
-  const client = await clientRepository.getClientByEmail(ctx.request.body.username);
+  const client = await clientRepository.findByUsername(ctx.request.body.username);
   if(!await compare(ctx.request.body.password, user))
     ctx.throw(401,'User not authorized');
   let token = jwt.sign({ id: client.usuario_id }, config.secret, {

@@ -1,11 +1,11 @@
-import Order from '../../models/orders';
+import Order from '../../models/order';
 
 /**
  * This function should only be used for GET requests passing the queryString as the parameter.
  * @param {string} params  querystring must be in databse format.
  * @returns { Object } returns an order object for use.
  */
-export async function getOrder(params) {
+export async function findOne(params) {
   try {
     return await Order.findById(params)
 
@@ -21,7 +21,7 @@ export async function getOrder(params) {
  * @param {Object} order Object from request
  * @returns mongoose schema order object
  */
-export async function createOrder(order) {
+export async function create(order) {
   try {
     order = new Order(order);
     return await order.save();
@@ -37,7 +37,7 @@ export async function createOrder(order) {
  * @param {string} id ObjectId of a order
  * @returns order object
  */
-export async function updateOrder(order,id) {
+export async function update(order,id) {
 
     return await Order.findByIdAndUpdate(id,order);
 };
@@ -47,7 +47,7 @@ export async function updateOrder(order,id) {
  * @param {string} id ObjectId from an order
  * @returns success message
  */
-export async function deleteOrder(id) {
+export async function DeleteOne(id) {
   try {
 
     await Order.deleteOne({'_id':id})
@@ -66,7 +66,7 @@ export async function deleteOrder(id) {
  * @param {Object} options skip and limit as object
  * @returns Orders objects
  */
-export async function findOrders(query,options) {
+export async function find(query,options) {
   if (query.created) {
     query.created = {
       $gte: query.created

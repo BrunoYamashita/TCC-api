@@ -5,7 +5,7 @@ import User from '../../models/users';
  * @param {string} params  querystring must be in databse format.
  * @returns { Object } returns an user object for use.
  */
-export async function getUser(params) {
+export async function findById(params) {
   try {
     return await User.findById(params)
 
@@ -21,7 +21,7 @@ export async function getUser(params) {
  * @param {String} param User email
  * @returns user object less password field
  */
-export async function getUserByEmail(param) {
+export async function findByUsername(param) {
   try {
     return await User.findOne({'username': {
       '$regex': param,
@@ -41,7 +41,7 @@ export async function getUserByEmail(param) {
  * @param {Object} user Object from request
  * @returns mongoose schema user object
  */
-export async function createUser(user) {
+export async function create(user) {
   try {
     user = new User(user);
     return await user.save();
@@ -57,7 +57,7 @@ export async function createUser(user) {
  * @param {string} id ObjectId of a user
  * @returns user object
  */
-export async function updateUser(user,id) {
+export async function update(user,id) {
 
     return await User.findByIdAndUpdate(id,user);
 };
@@ -67,7 +67,7 @@ export async function updateUser(user,id) {
  * @param {string} id ObjectId from an user
  * @returns success message
  */
-export async function deleteUser(id) {
+export async function deleteOne(id) {
   try {
 
     await User.deleteOne({'_id':id})
@@ -86,7 +86,7 @@ export async function deleteUser(id) {
  * @param {Object} options skip and limit as object
  * @returns Users objects
  */
-export async function findUsers(query,options) {
+export async function find(query,options) {
   if (query.name) {
     query.name = {
       '$regex': query.name,

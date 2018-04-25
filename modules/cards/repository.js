@@ -1,11 +1,11 @@
-import Card from '../../models/cards';
+import Card from '../../models/card';
 
 /**
  * This function should only be used for GET requests passing the queryString as the parameter.
  * @param {string} params  querystring must be in databse format.
  * @returns { Object } returns an card object for use.
  */
-export async function getCard(params) {
+export async function findOne(params) {
   try {
     return await Card.findById(params)
 
@@ -21,7 +21,7 @@ export async function getCard(params) {
  * @param {Object} card Object from request
  * @returns mongoose schema card object
  */
-export async function createCard(card) {
+export async function create(card) {
   try {
     card = new Card(card);
     return await card.save();
@@ -37,7 +37,7 @@ export async function createCard(card) {
  * @param {string} id ObjectId of a card
  * @returns card object
  */
-export async function updateCard(card,id) {
+export async function update(card,id) {
 
     return await Card.findByIdAndUpdate(id,card);
 };
@@ -47,7 +47,7 @@ export async function updateCard(card,id) {
  * @param {string} id ObjectId from an card
  * @returns success message
  */
-export async function deleteCard(id) {
+export async function deleteOne(id) {
   try {
 
     await Card.deleteOne({'_id':id})
@@ -66,7 +66,7 @@ export async function deleteCard(id) {
  * @param {Object} options skip and limit as object
  * @returns Cards objects
  */
-export async function findCards(query,options) {
+export async function find(query,options) {
   try {
 
     return await Card.find(query, null, options).sort({

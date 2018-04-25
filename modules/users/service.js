@@ -7,9 +7,9 @@ import * as userRepository from './repository';
  * @returns retruns a message of sucess and user object.
  * 
  */
-export async function createUser(ctx) {
+export async function create(ctx) {
 
-  let user = await userRepository.createUser(ctx.request.body.user);
+  let user = await userRepository.create(ctx.request.body.user);
 
   ctx.body = {
     message: 'successfully found',
@@ -23,7 +23,7 @@ export async function createUser(ctx) {
  * @param { Request } ctx HTTP context, request and response objescts into a single object.
  * @returns retruns user list.
  */
-export async function findUsers(ctx) {
+export async function find(ctx) {
   let params = Object.assign({}, ctx.query);
 
   let limit = 0,
@@ -39,7 +39,7 @@ export async function findUsers(ctx) {
     delete params.skip;
   }
 
-  const user = await userRepository.findUsers(params, {
+  const user = await userRepository.find(params, {
     skip,
     limit
   });
@@ -56,8 +56,8 @@ export async function findUsers(ctx) {
  * @param { Request } ctx HTTP context, request and response objescts into a single object.
  * @returns retruns user object.
  */
-export async function getUser(ctx) {
-  let user = await userRepository.getUser(ctx.params.id);
+export async function findById(ctx) {
+  let user = await userRepository.findById(ctx.params.id);
   ctx.body = {
     message: 'successfully found',
     user: user
@@ -70,8 +70,8 @@ export async function getUser(ctx) {
  * @param { Request } ctx ctx HTTP context, request and response objescts into a single object.
  * @returns retruns user object.
  */
-export async function getUserByUsername(ctx) {
-  let user = await userRepository.getUserByUsername(ctx.request.query.username);
+export async function findByUsername(ctx) {
+  let user = await userRepository.findByUsername(ctx.request.query.username);
   ctx.body = {
     message: 'successfully found',
     user: user
@@ -84,9 +84,9 @@ export async function getUserByUsername(ctx) {
  * @param { Request } ctx ctx HTTP context, request and response objescts into a single object.
  * @returns retruns confirmation of success.
  */
-export async function updateUser(ctx, next) {
+export async function update(ctx, next) {
 
-  let user = await userRepository.updateUser(ctx.request.body.user,ctx.params.id);
+  let user = await userRepository.update(ctx.request.body.user,ctx.params.id);
 
   ctx.body = {
     message: 'successfully updated',
@@ -101,9 +101,9 @@ export async function updateUser(ctx, next) {
  * @param { Request } ctx ctx HTTP context, request and response objescts into a single object.
  * @returns retruns confirmation of success.
  */
-export async function deleteUser(ctx) {
+export async function deleteOne(ctx) {
 
-  const user = userRepository.deleteUser(ctx.params.id);
+  const user = userRepository.deleteOne(ctx.params.id);
 
   ctx.body = {
     message: 'successfully deleted',

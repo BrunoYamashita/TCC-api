@@ -7,9 +7,9 @@ import * as cardRepository from './repository';
  * @returns retruns a message of sucess and user object.
  * 
  */
-export async function createCard(ctx) {
+export async function create(ctx) {
 
-  let user = await cardRepository.createCard(ctx.request.body.user);
+  let user = await cardRepository.create(ctx.request.body.user);
 
   ctx.body = {
     message: 'successfully found',
@@ -23,7 +23,7 @@ export async function createCard(ctx) {
  * @param { Request } ctx HTTP context, request and response objescts into a single object.
  * @returns retruns user list.
  */
-export async function findCards(ctx) {
+export async function find(ctx) {
   let params = Object.assign({}, ctx.query);
 
   let limit = 0,
@@ -39,7 +39,7 @@ export async function findCards(ctx) {
     delete params.skip;
   }
 
-  const user = await cardRepository.findCards(params, {
+  const user = await cardRepository.find(params, {
     skip,
     limit
   });
@@ -56,8 +56,8 @@ export async function findCards(ctx) {
  * @param { Request } ctx HTTP context, request and response objescts into a single object.
  * @returns retruns user object.
  */
-export async function getCard(ctx) {
-  let user = await cardRepository.getCard(ctx.params.id);
+export async function findOne(ctx) {
+  let user = await cardRepository.findOne(ctx.params.id);
   ctx.body = {
     message: 'successfully found',
     user: user
@@ -70,9 +70,9 @@ export async function getCard(ctx) {
  * @param { Request } ctx ctx HTTP context, request and response objescts into a single object.
  * @returns retruns confirmation of success.
  */
-export async function updateCard(ctx, next) {
+export async function update(ctx, next) {
 
-  let user = await cardRepository.updateCard(ctx.request.body.user,ctx.params.id);
+  let user = await cardRepository.update(ctx.request.body.user,ctx.params.id);
 
   ctx.body = {
     message: 'successfully updated',
@@ -87,9 +87,9 @@ export async function updateCard(ctx, next) {
  * @param { Request } ctx ctx HTTP context, request and response objescts into a single object.
  * @returns retruns confirmation of success.
  */
-export async function deleteCard(ctx) {
+export async function deleteOne(ctx) {
 
-  const user = cardRepository.deleteCard(ctx.params.id);
+  const user = cardRepository.deleteOne(ctx.params.id);
 
   ctx.body = {
     message: 'successfully deleted',

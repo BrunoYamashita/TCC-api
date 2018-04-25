@@ -5,7 +5,7 @@ import Product from '../../models/products';
  * @param {string} params  querystring must be in databse format.
  * @returns { Object } returns an product object for use.
  */
-export async function getProduct(params) {
+export async function findOne(params) {
   try {
     return await Product.findById(params)
 
@@ -21,7 +21,7 @@ export async function getProduct(params) {
  * @param {Object} product Object from request
  * @returns mongoose schema product object
  */
-export async function createProduct(product) {
+export async function create(product) {
   try {
     product = new Product(product);
     return await product.save();
@@ -37,7 +37,7 @@ export async function createProduct(product) {
  * @param {string} id ObjectId of a product
  * @returns product object
  */
-export async function updateProduct(product,id) {
+export async function update(product,id) {
 
     return await Product.findByIdAndUpdate(id,product);
 };
@@ -47,7 +47,7 @@ export async function updateProduct(product,id) {
  * @param {string} id ObjectId from an product
  * @returns success message
  */
-export async function deleteProduct(id) {
+export async function DeleteOne(id) {
   try {
 
     await Product.deleteOne({'_id':id})
@@ -66,7 +66,7 @@ export async function deleteProduct(id) {
  * @param {Object} options skip and limit as object
  * @returns Products objects
  */
-export async function findProducts(query,options) {
+export async function find(query,options) {
   if (query.created) {
     query.created = {
       $gte: query.created

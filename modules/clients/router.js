@@ -14,6 +14,7 @@ export default [
     route: '/',
     handlers: [
         ensureClient,
+        clients.create
     ]
   },
   {
@@ -21,6 +22,7 @@ export default [
     route: '/',
     handlers: [
         ensureClient,
+        clients.find
     ]
   },
   {
@@ -28,6 +30,7 @@ export default [
     route: '/:id',
     handlers: [
       ensureClient,
+      clients.findOne
     ]
   },
   {
@@ -35,6 +38,7 @@ export default [
     route: '/:id',
     handlers: [
       ensureClient,
+      clients.update
     ]
   },
   {
@@ -42,6 +46,7 @@ export default [
     route: '/:id',
     handlers: [
       ensureClient,
+      clients.deleteOne
     ]
   }
 ]

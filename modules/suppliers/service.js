@@ -7,9 +7,9 @@ import * as supplierRepository from './repository';
  * @returns retruns a message of sucess and supplier object.
  * 
  */
-export async function createSupplier(ctx) {
+export async function create(ctx) {
 
-  let supplier = await supplierRepository.createSupplier(ctx.request.body.supplier);
+  let supplier = await supplierRepository.create(ctx.request.body.supplier);
 
   ctx.body = {
     message: 'successfully found',
@@ -23,7 +23,7 @@ export async function createSupplier(ctx) {
  * @param { Request } ctx HTTP context, request and response objescts into a single object.
  * @returns retruns supplier list.
  */
-export async function findSuppliers(ctx) {
+export async function find(ctx) {
   let params = Object.assign({}, ctx.query);
 
   let limit = 0,
@@ -39,7 +39,7 @@ export async function findSuppliers(ctx) {
     delete params.skip;
   }
 
-  const supplier = await supplierRepository.findSuppliers(params, {
+  const supplier = await supplierRepository.find(params, {
     skip,
     limit
   });
@@ -56,8 +56,8 @@ export async function findSuppliers(ctx) {
  * @param { Request } ctx HTTP context, request and response objescts into a single object.
  * @returns retruns supplier object.
  */
-export async function getSupplier(ctx) {
-  let supplier = await supplierRepository.getSupplier(ctx.params.id);
+export async function findOne(ctx) {
+  let supplier = await supplierRepository.findOne(ctx.params.id);
   ctx.body = {
     message: 'successfully found',
     supplier: supplier
@@ -70,9 +70,9 @@ export async function getSupplier(ctx) {
  * @param { Request } ctx ctx HTTP context, request and response objescts into a single object.
  * @returns retruns confirmation of success.
  */
-export async function updateSupplier(ctx, next) {
+export async function update(ctx, next) {
 
-  let supplier = await supplierRepository.updateSupplier(ctx.request.body.supplier,ctx.params.id);
+  let supplier = await supplierRepository.update(ctx.request.body.supplier,ctx.params.id);
 
   ctx.body = {
     message: 'successfully updated',
@@ -87,9 +87,9 @@ export async function updateSupplier(ctx, next) {
  * @param { Request } ctx ctx HTTP context, request and response objescts into a single object.
  * @returns retruns confirmation of success.
  */
-export async function deleteSupplier(ctx) {
+export async function deleteOne(ctx) {
 
-  const supplier = supplierRepository.deleteSupplier(ctx.params.id);
+  const supplier = supplierRepository.deleteOne(ctx.params.id);
 
   ctx.body = {
     message: 'successfully deleted',

@@ -14,7 +14,7 @@ export default [
     route: '/',
     handlers: [
         ensureClient,
-        order.createOrder
+        order.create
     ]
   },
   {
@@ -22,7 +22,7 @@ export default [
     route: '/',
     handlers: [
         ensureClient,
-        order.findOrders
+        order.find
     ]
   },
   {
@@ -30,7 +30,7 @@ export default [
     route: '/:id',
     handlers: [
       ensureClient,
-      order.getOrder
+      order.findOne
     ]
   },
   {
@@ -38,7 +38,7 @@ export default [
     route: '/:id',
     handlers: [
       ensureClient,
-      order.updateOrder
+      order.update
     ]
   },
   {
@@ -46,7 +46,7 @@ export default [
     route: '/:id',
     handlers: [
       ensureClient,
-      order.deleteOrder
+      order.DeleteOne
     ]
   }
 ]

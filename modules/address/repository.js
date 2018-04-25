@@ -5,7 +5,7 @@ import Address from '../../models/address';
  * @param { Object } address request body from context
  * @returns addresses inserted 
  */
-export async function createAddress(address) {
+export async function create(address) {
     try {
         return await Address.insertMany(address);
     } catch (error) {
@@ -19,7 +19,7 @@ export async function createAddress(address) {
  * @param {*} id ID from the address
  * @returns Address object
  */
-export async function findAddress(id) {
+export async function findOne(id) {
     try {
         return await Address.findById(id);
     } catch (error) {
@@ -34,7 +34,7 @@ export async function findAddress(id) {
  * @param {*} options skip and limit parameters
  * @returns  Array of Addresses
  */
-export async function findAddresses(query,options) {
+export async function find(query,options) {
 
     if(query.street){
         quer.street={
@@ -68,7 +68,7 @@ export async function findAddresses(query,options) {
  * @param {String} id ObjectId of this document got from request params
  * @returns success message
  */
-export async function updateAddress(address,id) {
+export async function update(address,id) {
     try {
         return await Address.findByIdAndUpdate(id,address);
     } catch (error) {
@@ -83,7 +83,7 @@ export async function updateAddress(address,id) {
  * @param {String} id ObjectId of this document got from request params
  * @returns success message
  */
-export async function deleteAddress(id) {
+export async function deleteOne(id) {
     try {
         return await Address.deleteOne({'_id':id})
     } catch (error) {

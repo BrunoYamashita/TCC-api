@@ -1,11 +1,11 @@
-import Supplier from '../../models/suppliers';
+import Supplier from '../../models/supplier';
 
 /**
  * This function should only be used for GET requests passing the queryString as the parameter.
  * @param {string} params  querystring must be in databse format.
  * @returns { Object } returns an supplier object for use.
  */
-export async function getSupplier(params) {
+export async function findOne(params) {
   try {
     return await Supplier.findById(params)
 
@@ -21,7 +21,7 @@ export async function getSupplier(params) {
  * @param {Object} supplier Object from request
  * @returns mongoose schema supplier object
  */
-export async function createSupplier(supplier) {
+export async function create(supplier) {
   try {
     supplier = new Supplier(supplier);
     return await supplier.save();
@@ -37,7 +37,7 @@ export async function createSupplier(supplier) {
  * @param {string} id ObjectId of a supplier
  * @returns supplier object
  */
-export async function updateSupplier(supplier,id) {
+export async function update(supplier,id) {
 
     return await Supplier.findByIdAndUpdate(id,supplier);
 };
@@ -47,7 +47,7 @@ export async function updateSupplier(supplier,id) {
  * @param {string} id ObjectId from an supplier
  * @returns success message
  */
-export async function deleteSupplier(id) {
+export async function deleteOne(id) {
   try {
 
     await Supplier.deleteOne({'_id':id})
@@ -66,7 +66,7 @@ export async function deleteSupplier(id) {
  * @param {Object} options skip and limit as object
  * @returns Suppliers objects
  */
-export async function findSuppliers(query,options) {
+export async function find(query,options) {
   if (query.created) {
     query.created = {
       $gte: query.created

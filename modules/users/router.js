@@ -14,7 +14,7 @@ export default [
     route: '/',
     handlers: [
       ensureUser,
-      users.createUser
+      users.create
     ]
   },
   {
@@ -22,7 +22,7 @@ export default [
     route: '/:id',
     handlers: [
       ensureUser,
-      users.getUser
+      users.findById
     ]
   },
   {
@@ -30,7 +30,7 @@ export default [
     route: '/',
     handlers: [
         ensureUser,
-        users.findUsers,
+        users.find,
     ]
   },
   {
@@ -38,7 +38,7 @@ export default [
     route: '/:id',
     handlers: [
       ensureUser,
-      users.updateUser,
+      users.update,
     ]
   },
   {
@@ -46,7 +46,7 @@ export default [
     route: '/:id',
     handlers: [
       ensureUser,
-      users.deleteUser
+      users.deleteOne
     ]
   }
 ]

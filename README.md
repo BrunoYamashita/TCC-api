@@ -20,7 +20,7 @@ Aqui next é uma função
     method: 'PUT',
     route: '/:id',
     handlers: [
-      users.updateUser,
+      users.update,
       users.log
     ]
   }
@@ -31,7 +31,7 @@ Aqui não
     method: 'PUT',
     route: '/:id',
     handlers: [
-      users.updateUser,
+      users.update,
     ]
   }
 

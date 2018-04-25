@@ -14,7 +14,7 @@ export default [
     route: '/',
     handlers: [
       ensureClient,
-      cards.createCard
+      cards.create
     ]
   },
   {
@@ -22,7 +22,7 @@ export default [
     route: '/:id',
     handlers: [
       ensureClient,
-      cards.getCard
+      cards.findOne
     ]
   },
   {
@@ -30,7 +30,7 @@ export default [
     route: '/',
     handlers: [
         ensureClient,
-        cards.findCards,
+        cards.find,
     ]
   },
   {
@@ -38,7 +38,7 @@ export default [
     route: '/:id',
     handlers: [
       ensureClient,
-      cards.updateCard,
+      cards.update,
     ]
   },
   {
@@ -46,7 +46,7 @@ export default [
     route: '/:id',
     handlers: [
       ensureClient,
-      cards.deleteCard
+      cards.deleteOne
     ]
   }
 ]

@@ -7,9 +7,9 @@ import * as productRepository from './repository';
  * @returns retruns a message of sucess and product object.
  * 
  */
-export async function createProduct(ctx) {
+export async function create(ctx) {
 
-  let product = await productRepository.createProduct(ctx.request.body.product);
+  let product = await productRepository.create(ctx.request.body.product);
 
   ctx.body = {
     message: 'successfully found',
@@ -23,7 +23,7 @@ export async function createProduct(ctx) {
  * @param { Request } ctx HTTP context, request and response objescts into a single object.
  * @returns retruns product list.
  */
-export async function findProducts(ctx) {
+export async function find(ctx) {
   let params = Object.assign({}, ctx.query);
 
   let limit = 0,
@@ -39,7 +39,7 @@ export async function findProducts(ctx) {
     delete params.skip;
   }
 
-  const product = await productRepository.findProducts(params, {
+  const product = await productRepository.find(params, {
     skip,
     limit
   });
@@ -56,8 +56,8 @@ export async function findProducts(ctx) {
  * @param { Request } ctx HTTP context, request and response objescts into a single object.
  * @returns retruns product object.
  */
-export async function getProduct(ctx) {
-  let product = await productRepository.getProduct(ctx.params.id);
+export async function findOne(ctx) {
+  let product = await productRepository.findOne(ctx.params.id);
   ctx.body = {
     message: 'successfully found',
     product: product
@@ -70,9 +70,9 @@ export async function getProduct(ctx) {
  * @param { Request } ctx ctx HTTP context, request and response objescts into a single object.
  * @returns retruns confirmation of success.
  */
-export async function updateProduct(ctx, next) {
+export async function update(ctx, next) {
 
-  let product = await productRepository.updateProduct(ctx.request.body.product,ctx.params.id);
+  let product = await productRepository.update(ctx.request.body.product,ctx.params.id);
 
   ctx.body = {
     message: 'successfully updated',
@@ -87,9 +87,9 @@ export async function updateProduct(ctx, next) {
  * @param { Request } ctx ctx HTTP context, request and response objescts into a single object.
  * @returns retruns confirmation of success.
  */
-export async function deleteProduct(ctx) {
+export async function DeleteOne(ctx) {
 
-  const product = productRepository.deleteProduct(ctx.params.id);
+  const product = productRepository.DeleteOne(ctx.params.id);
 
   ctx.body = {
     message: 'successfully deleted',

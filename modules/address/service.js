@@ -5,8 +5,8 @@ import * as addressRepository from './repository';
  * @param {Request} ctx  HTTP context, request and response objescts into a single object.
  * @returns Address object and confirmation
  */
-export async function createAddress(ctx) {
-  let address = await addressRepository.createAddress(ctx.params.id);
+export async function create(ctx) {
+  let address = await addressRepository.create(ctx.params.id);
 
   ctx.body = {
     message:'successfully created',
@@ -19,8 +19,8 @@ export async function createAddress(ctx) {
  * @param {Request} ctx  HTTP context, request and response objescts into a single object.
  * @returns Array of addresses
  */
-export async function findAddress(ctx) {
-    let address = await addressRepository.findAddress(ctx.params.id);
+export async function findOne(ctx) {
+    let address = await addressRepository.findOne(ctx.params.id);
 
     ctx.body = {
       message:'successfully found',
@@ -33,7 +33,7 @@ export async function findAddress(ctx) {
  * @param {Request} ctx  HTTP context, request and response objescts into a single object.
  * @returns One object of address
  */
-export async function findAddresses(ctx) {
+export async function find(ctx) {
 
   let params = Object.assign({}, ctx.query);
 
@@ -50,7 +50,7 @@ export async function findAddresses(ctx) {
     delete params.skip;
   }
 
-  let address = await addressRepository.findAddresses(query);
+  let address = await addressRepository.find(query);
 
   ctx.body = {
     message:'successfully found',
@@ -63,8 +63,8 @@ export async function findAddresses(ctx) {
  * @param {Request} ctx  HTTP context, request and response objescts into a single object.
  * @returns object of address and confirmation
  */
-export async function updateAddress(ctx) {
-    let address = await addressRepository.updateAddress(ctx.request.body.user,ctx.params.id);
+export async function update(ctx) {
+    let address = await addressRepository.update(ctx.request.body.user,ctx.params.id);
 
     ctx.body = {
       message: 'successfully updated',
@@ -77,8 +77,8 @@ export async function updateAddress(ctx) {
  * @param {Request} ctx HTTP context, request and response objescts into a single object.
  * @returns Confirmation
  */
-export async function deleteAddress(ctx) {
-  let address = await addressRepository.deleteAddress(ctx.params.id);
+export async function deleteOne(ctx) {
+  let address = await addressRepository.deleteOne(ctx.params.id);
 
   ctx.body = {
     message: 'successfully updated',
